@@ -19,11 +19,11 @@ ln -s $SRC/vimrc $HOME/.vimrc
 ln -s $SRC/xinitrc $HOME/.xinitrc
 
 # Create sed safe version of SRC variable.
-SSRC=$(echo "$SRC" | sed -e 's/[]$.*[\^]/\\&/g')
+SSRC=$(echo "$SRC" | sed -e 's/\//\\\//g')
 
 # Update directories between dotfiles.
-sed -i "s/<dotfiles_dir>/$SSRC/g" $SRC/xinitrc
-sed -i "s/<dotfiles_dir>/$SSRC/g" $SRC/bashrc
+sed -i "s/<dotfiles_dir>/${SSRC}/g" $SRC/xinitrc
+sed -i "s/<dotfiles_dir>/${SSRC}/g" $SRC/bashrc
 
 # Set the name of machine.
 printf "Enter computer name for command line [$(hostname)]: "
@@ -35,3 +35,5 @@ sed -i "s/<dotfiles_dir>/$H/g" $SSRC/bashrc
 [ "$OS" == "Linux" ] && [ "$(cat /etc/*-release | grep DISTRIB_ID | awk -F'=' '{print $2}')" == "Arch" ] && \
     sed -i 's/<pm>/sudo pacman/g' $SRC/aliases
 
+# Return home.
+cd
