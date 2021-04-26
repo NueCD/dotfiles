@@ -1,0 +1,58 @@
+*background: [80]#000000
+*foreground: #d9d9d9
+
+! --- standard colors ---
+*depth: 32
+
+! black
+*color0: #000000
+
+! bright_black
+*color8: #353535
+
+! red
+*color1: #c44751
+
+! bright_red
+*color9: #e09da2
+
+! green
+*color2: #51c447
+
+! bright_green
+*color10: #a2e09d
+
+! yellow
+*color3: #c4ba47
+
+! bright_yellow
+*color11: #e0da9d
+
+! blue
+*color4: #4751c4
+
+! bright_blue
+*color12: #9da2e0
+
+! magenta
+*color5: #ba47c4
+
+*color13: #da9de0
+! cyan
+*color6: #47c4ba
+
+! bright_cyan
+*color14: #9de0da
+
+! white
+*color7: #d9d9d9
+
+! bright_white
+*color15: #ffffff
+
+
+! ------------------------------------------------------------------------------
+! --- end of terminal colors section -------------------------------------------
+! ------------------------------------------------------------------------------
+
+#include "/home/nue/.config/urxvt/themes/defaults"

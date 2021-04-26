@@ -1,6 +1,6 @@
 #!/bin/sh
 
-xrdb -merge $HOME/.config/urxvt/themes/kaguya-dark &
+xrdb -merge <dotfile_dir>/Xresources &
 
 # UIM input
 export GTK_IM_MODULE='uim'
@@ -8,9 +8,9 @@ export QT_IM_MODULE='uim'
 uim-xim &
 export XMODIFIERS='@im=uim'
 
-$HOME/.screenlayout/default.sh
+#$HOME/.screenlayout/default.sh
 xcompmgr &
 unclutter &
 setbg &
-$HOME/.scripts/pump_color_changer.sh &
+#$HOME/.scripts/pump_color_changer.sh &
 redshift -l 59.62:16.59 -t 6500K:3500K -b 1.0:0.6 &

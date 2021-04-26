@@ -23,6 +23,7 @@ SSRC=$(echo "$SRC" | sed -e 's/\//\\\//g')
 
 # Update directories between dotfiles.
 sed -i "s/<dotfiles_dir>/${SSRC}/g" $SRC/xinitrc
+sed -i "s/<dotfiles_dir>/${SSRC}/g" $SRC/xprofile
 sed -i "s/<dotfiles_dir>/${SSRC}/g" $SRC/bashrc
 
 # Set the name of machine.
