@@ -1,9 +1,9 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
-[[ -f "$HOME/.config/aliases" ]] && . $HOME/.config/aliases
+[[ -f "<dotfiles_dir>/aliases" ]] && . <dotfiles_dir>/aliases
 
 # Variables
-PATH=$PATH:$HOME/.local/bin:$HOME/.scripts
+PATH=$PATH:$HOME/.local/bin:$HOME/.dotscripts
 CC=gcc
-PS1="\[\e[35m\]Amatsukaze \[\e[36m\]\w \[\e[33m\]--> \[\e[m\]"
+PS1="\[\e[35m\]<hostname> \[\e[36m\]\w \[\e[33m\]--> \[\e[m\]"
