@@ -7,7 +7,7 @@
 OS="$(uname)"
 
 # Prepare directory.
-cd $SRC
+cd $SRC/..
 [ ! -d "dotfiles" ] && echo "No dotfiles directory found. Exiting." && exit
 mv dotfiles .dotfiles
 SRC="$(pwd)/.dotfiles"
@@ -18,11 +18,20 @@ ln -s $SRC/bash_profile $HOME/.bash_profile
 ln -s $SRC/vimrc $HOME/.vimrc
 ln -s $SRC/xinitrc $HOME/.xinitrc
 
-sed -i "s/<dotfiles_dir>/$SRC/g" $SRC/xinitrc
-sed -i "s/<dotfiles_dir>/$SRC/g" $SRC/bashrc
+# Create sed safe version of SRC variable.
+SSRC=$(echo "$SRC" | sed -e 's/[]$.*[\^]/\\&/g')
+
+# Update directories between dotfiles.
+sed -i "s/<dotfiles_dir>/$SSRC/g" $SRC/xinitrc
+sed -i "s/<dotfiles_dir>/$SSRC/g" $SRC/bashrc
+
+# Set the name of machine.
 printf "Enter computer name for command line [$(hostname)]: "
-read H || H="$(hostname)"
-sed -i "s/<dotfiles_dir>/$H/g" $SRC/bashrc
+read H || H="$(hostname -s)"
+sed -i "s/<dotfiles_dir>/$H/g" $SSRC/bashrc
+
+# Select package manager.
 [ "$OS" == "OpenBSD" ] && sed -i 's/<pm>/doas pkg/g' $SRC/aliases
-[ "$OS" == "Linux" ] && [ "$(cat /etc/*-release | grep DISTRIB_ID | awk -F'=' '{print $2}'") == "Arch" ] && \
+[ "$OS" == "Linux" ] && [ "$(cat /etc/*-release | grep DISTRIB_ID | awk -F'=' '{print $2}')" == "Arch" ] && \
     sed -i 's/<pm>/sudo pacman/g' $SRC/aliases
+
